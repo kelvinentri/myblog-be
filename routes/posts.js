@@ -1,6 +1,7 @@
 var express = require('express');
-const { addImageHandler } = require('../controllers/postController');
-const multer  = require('multer')
+const { addImageHandler, addPost, getBlogData } = require('../controllers/postController');
+const multer  = require('multer');
+const verifyUser = require('../middlewares.js/auth');
 var router = express.Router();
 // https://medium.com/swlh/how-to-upload-image-using-multer-in-node-js-f3aeffb90657
 
@@ -13,6 +14,8 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({ storage: storage })
-router.post('/addimage', upload.single('image'), addImageHandler)
+router.post('/addimage',verifyUser, upload.single('image'), addImageHandler)
+router.post('/createPost',verifyUser, addPost)
+router.get('/getBlogData',verifyUser, getBlogData)
 
 module.exports = router;

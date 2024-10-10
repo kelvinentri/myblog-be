@@ -2,8 +2,7 @@ const mongoose=require('mongoose')
 
 
 const DBconnect=()=>{
-    const mongoDB_URI='mongodb+srv://kelvingeorge:LCdKCMMpHUSXarWN@cluster0.w1n2t.mongodb.net/e42-blog'
-    mongoose.connect(mongoDB_URI).then((res)=>{
+    mongoose.connect(process.env.mongoDB_URI).then((res)=>{
         console.log('DB connection successfull');
         
     })

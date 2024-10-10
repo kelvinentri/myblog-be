@@ -10,7 +10,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postRouter = require('./routes/posts');
 const DBconnect = require('./config/db');
-console.log(process.env.PORT);
 
 var app = express();
 

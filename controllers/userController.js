@@ -9,7 +9,7 @@ const doSignup =  (req, res, next) => {
     USER({ name: username, email, password:hash })
       .save()
       .then((result) => {
-        res.status(200).json("signup successfull");
+        res.status(200).json("signup successfull"); 
       })
       .catch((err) => {
         console.log(err);
@@ -23,7 +23,6 @@ const {password,email}=req.body
 const userData= await USER.findOne({email:email})
 if(userData){
     bcrypt.compare(password, userData.password).then(function(result) {
-        console.log({result});
         if(result){
             const token =jwt.sign({name:userData.name,email:userData.email,_id:userData._id},process.env.JWT_PASSWORD,{expiresIn:"1d"})
             res.status(200).json({message:'login successful',token})
