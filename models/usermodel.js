@@ -17,10 +17,14 @@ const userSchema = mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: [true, 'duplicate  email error'],
+    unique: true,
   },
   password: {
     type: String,
+    required: true,
+  },
+  mob: {
+    type: Number,
     required: true,
   },
 });
