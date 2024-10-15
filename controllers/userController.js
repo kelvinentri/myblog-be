@@ -1,4 +1,5 @@
 const USER = require("../models/usermodel");
+const BOOKS = require("../models/books");
 const jwt= require('jsonwebtoken')
 
 const doSignup = (req, res, next) => {
@@ -35,4 +36,9 @@ const doLogin = async (req, res, next) => {
     }
   } catch (error) {}
 };
-module.exports = { doSignup, doLogin };
+const getData=(req,res,next)=>{
+BOOKS.find().limit(100).then((result)=>{
+  res.status(200).json(result)
+})
+}
+module.exports = { doSignup, doLogin,getData };
