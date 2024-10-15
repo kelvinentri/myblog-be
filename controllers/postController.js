@@ -43,7 +43,7 @@ const getBlogData = (req, res, next) => {
             {
               $set: {
                 user: { $arrayElemAt: ["$user", 0] },
-                content11: { substrBytes: ["$content", 0, 300] },
+                content: { $substrBytes: ["$content", 0, 300] },
               },
             },
             {
