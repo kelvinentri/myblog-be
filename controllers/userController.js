@@ -35,6 +35,10 @@ const doLogin = async (req, res, next) => {
     const userData = await USER.findOne({ email: email });
     if (userData) {
       bcrypt.compare(password,userData.password).then((match)=>{
+        if(!userData.status){
+          res.status(403).json({ message: "blocked user " });
+          return
+        }
         if (match) {
           const token =jwt.sign({id:userData._id,name:userData.name,email:userData.email},process.env.JWT_PASS,{expiresIn:"1d"})
           res.status(200).json({ message: "Login  successfull",token:token });
